@@ -3,7 +3,7 @@ import React from 'react';
 
 const validator = (props) => {
   return (
-    <p>{props.isValidated} : minimum 5 characters</p>
+    <h6>{props.isValidated} : (minimum 5 characters)</h6>
   )
 }
 
