@@ -7,7 +7,8 @@ import Char from './Char/Char'
 
 class App extends Component {
   state = {
-    inputFieldText: 'blank',
+    inputFieldText: 'blank'
+    //inputFieldTextLength: this.state.inputFieldText.length
   };
 
   inputChangedHandler = (event) => {
@@ -15,11 +16,14 @@ class App extends Component {
   }
 
   charDeleteHandler = (index) => {
+    const modifiedText = [...this.state.inputFieldText];
+    modifiedText.splice(index, 1);
+    this.setState({inputFieldText: modifiedText.join('')})
   }
 
   render() {
     let isValidated = 'text long enough';
-    //this.state.inputFieldText.length < 5 ? isValidated = 'text too short' : null;
+    //this.state.inputFieldTextLength < 5 ? isValidated = 'text too short' : null;
     if(this.state.inputFieldText.length < 5) {
       isValidated = 'text too short';
     }
@@ -27,7 +31,7 @@ class App extends Component {
     let charDisplay = (
       <div>
         {this.state.inputFieldText.split('').map((char, index) => {
-          return <Char text={char} clicked={() => this.charDeleteHandler(index)}/>
+          return <Char text={char} key={index} id={index} clicked={() => this.charDeleteHandler(index)}/>
         })}
       </div>
     );
